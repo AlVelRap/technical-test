@@ -15,6 +15,9 @@ import { JwtInterceptorService } from './services/jwt-interceptor.service';
 import { ErrorInterceptorService } from './services/error-interceptor.service';
 import { JWT_OPTIONS, JwtHelperService  } from '@auth0/angular-jwt';
 import { PlayerListComponent } from './player-list/player-list.component';
+import { ChartComponent } from './raport/chart/chart.component';
+import { ListComponent } from './raport/list/list.component';
+import { NgChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -25,6 +28,8 @@ import { PlayerListComponent } from './player-list/player-list.component';
     HomeComponent,
     WellnessComponent,
     PlayerListComponent,
+    ChartComponent,
+    ListComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,6 +37,7 @@ import { PlayerListComponent } from './player-list/player-list.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgChartsModule,
   ],
   providers: [
     {

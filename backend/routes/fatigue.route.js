@@ -5,7 +5,7 @@ module.exports = (app) => {
   var router = require("express").Router();
 
   router.post("/",isAuthenticated, fatigue.create);
-  router.get("/player/:id_player", fatigue.findByPlayer);
+  router.get("/player/:id_player",isAuthenticated, fatigue.findByPlayer);
 
   app.use(`/${API}/${REST}/${VERSION}/fatigue`, router);
 };
