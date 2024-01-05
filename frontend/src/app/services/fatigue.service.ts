@@ -13,4 +13,8 @@ export class FatigueService {
   create(fatigue: Fatigue): Observable<any> {
     return this.http.post<any>(`${this.FATIGUE_ROUTE}`, fatigue);
   }
+
+  findByPlayer(id_player: string): Observable<any> {
+    return this.http.get<any>(`${this.FATIGUE_ROUTE}player/${id_player}`);
+  }
 }
