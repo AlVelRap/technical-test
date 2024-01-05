@@ -6,6 +6,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { WellnessComponent } from './wellness/wellness.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { PlayerListComponent } from './player-list/player-list.component';
+import { ListComponent } from './raport/list/list.component';
+import { ChartComponent } from './raport/chart/chart.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -21,6 +23,17 @@ const routes: Routes = [
     component: WellnessComponent,
     pathMatch: 'full',
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'report',
+    component: ListComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'player/:id_player',
+        component: ChartComponent,
+      },
+    ],
   },
   { path: '**', redirectTo: '' },
 ];
