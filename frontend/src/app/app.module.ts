@@ -15,6 +15,7 @@ import { JwtInterceptorService } from './services/jwt-interceptor.service';
 import { ErrorInterceptorService } from './services/error-interceptor.service';
 import { JWT_OPTIONS, JwtHelperService  } from '@auth0/angular-jwt';
 import { PlayerListComponent } from './player-list/player-list.component';
+import { ChartComponent } from './raport/chart/chart.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { PlayerListComponent } from './player-list/player-list.component';
     HomeComponent,
     WellnessComponent,
     PlayerListComponent,
+    ChartComponent,
   ],
   imports: [
     BrowserModule,
