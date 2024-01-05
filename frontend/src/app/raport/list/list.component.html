@@ -1,1 +1,28 @@
-<p>list works!</p>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-4">
+      <div class="container">
+        <div class="row">
+          <div class="col-12" *ngFor="let player of playerList">
+            <a
+              [routerLink]="'player/' + player.id_player"
+              class="text-decoration-none text-reset"
+            >
+              <div class="container m-2">
+                <h4>{{ player.firstname }} {{ player.lastname }}</h4>
+                <img
+                  [src]="player.img"
+                  class="img-fluid"
+                  style="max-height: 100px"
+                />
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-8 text-center">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
