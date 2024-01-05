@@ -1,0 +1,142 @@
+<div class="container my-3">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-3 text-center" *ngIf="playerData">
+      <h5>{{ playerData.firstname }} {{ playerData.lastname }}</h5>
+      <img [src]="playerData.img" class="img-fluid" />
+    </div>
+    <div class="col-12 col-md-6">
+      <h1>Fatiga</h1>
+      <p>¿Cómo te sientes hoy?</p>
+      <form [formGroup]="wellnessForm">
+        <p class="text-danger">{{ wellnessError }}</p>
+        <div class="list-group">
+          <label class="list-group-item d-flex gap-2">
+            <input
+              class="form-check-input flex-shrink-0"
+              type="radio"
+              name="feeling"
+              value="5"
+              formControlName="feeling"
+            />
+            <div class="d-flex gap-2 w-100 justify-content-between">
+              <div>
+                Muy fresco
+                <small class="d-block text-body-secondary"
+                  >Me siento perfecto para jugar.</small
+                >
+              </div>
+            </div>
+            <img
+              src="../../assets/excellent.png"
+              class="rounded-circle flex-shrink-0"
+              style="max-height: 45px"
+            />
+          </label>
+          <label class="list-group-item d-flex gap-2">
+            <input
+              class="form-check-input flex-shrink-0"
+              type="radio"
+              name="feeling"
+              value="4"
+              formControlName="feeling"
+            />
+            <div class="d-flex gap-2 w-100 justify-content-between">
+              <div>
+                Fresco
+                <small class="d-block text-body-secondary"
+                  >Puedo jugar sin problemas.</small
+                >
+              </div>
+            </div>
+            <img
+              src="../../assets/good.png"
+              class="rounded-circle flex-shrink-0"
+              style="max-height: 45px"
+            />
+          </label>
+          <label class="list-group-item d-flex gap-2">
+            <input
+              class="form-check-input flex-shrink-0"
+              type="radio"
+              name="feeling"
+              value="3"
+              formControlName="feeling"
+            />
+            <div class="d-flex gap-2 w-100 justify-content-between">
+              <div>
+                Normal
+                <small class="d-block text-body-secondary"
+                  >No voy a poder dar mi 100%.</small
+                >
+              </div>
+            </div>
+            <img
+              src="../../assets/normal.png"
+              class="rounded-circle flex-shrink-0"
+              style="max-height: 45px"
+            />
+          </label>
+          <label class="list-group-item d-flex gap-2">
+            <input
+              class="form-check-input flex-shrink-0"
+              type="radio"
+              name="feeling"
+              value="2"
+              formControlName="feeling"
+            />
+            <div class="d-flex gap-2 w-100 justify-content-between">
+              <div>
+                Más cansado de lo normal
+                <small class="d-block text-body-secondary"
+                  >Mi rendimiento se verá resentido.</small
+                >
+              </div>
+            </div>
+            <img
+              src="../../assets/poor.png"
+              class="rounded-circle flex-shrink-0"
+              style="max-height: 45px"
+            />
+          </label>
+          <label class="list-group-item d-flex gap-2">
+            <input
+              class="form-check-input flex-shrink-0"
+              type="radio"
+              name="feeling"
+              value="1"
+              formControlName="feeling"
+            />
+            <div class="d-flex gap-2 w-100 justify-content-between">
+              <div>
+                Siempre cansado
+                <small class="d-block text-body-secondary"
+                  >Me siento muy fatigado.</small
+                >
+              </div>
+            </div>
+            <img
+              src="../../assets/bad.png"
+              class="rounded-circle flex-shrink-0"
+              style="max-height: 45px"
+            />
+          </label>
+        </div>
+        <div
+          *ngIf="feeling.invalid && (feeling.dirty || feeling.touched)"
+          class="text-danger"
+        >
+          <div *ngIf="feeling.errors?.['required']">Seleccione una opción.</div>
+        </div>
+        <div class="text-center">
+          <button
+            type="submit"
+            (click)="register()"
+            class="btn btn-primary my-2"
+          >
+            Registrar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
