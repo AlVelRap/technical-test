@@ -45,21 +45,25 @@ Fatigue.create = (newRegistry, result) => {
 };
 
 Fatigue.findByIdPlayer = (id, result) => {
-  conn.query(`SELECT * FROM fatigue WHERE id_player = ?`, [id], (err, res) => {
-    if (err) {
-      console.log("error: ", err);
-      result(err, null);
-      return;
-    }
+  conn.query(
+    `SELECT * FROM fatigue WHERE id_player = ? AND registry_date <= NOW() AND registry_date >= DATE_SUB(NOW(), INTERVAL 7 DAY) `,
+    [id],
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
 
-    if (res.length) {
-      console.log("fatigue registry found: ", res);
-      result(null, res);
-      return;
-    }
+      if (res.length) {
+        console.log("fatigue registry found: ", res);
+        result(null, res);
+        return;
+      }
 
-    result({ kind: "not_found" }, null);
-  });
+      result({ kind: "not_found" }, null);
+    }
+  );
 };
 
 module.exports = Fatigue;
