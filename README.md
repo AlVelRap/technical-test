@@ -8,9 +8,7 @@ This is App was made for the technical test requested by Real Valladolid's Team.
 - [Getting Started](#getting-started)
   - [Installation](#installation)
   - [Usage](#usage)
-- [Inspiration](#inspiration)
-- [Roadmap](#readmap)
-- [Contact](#contact)
+  - [Important](#important)
 
 ## Technologies
 
