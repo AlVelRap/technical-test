@@ -3,9 +3,9 @@ DROP SCHEMA IF EXISTS `wellness_real_valladolid_db` ;
 CREATE SCHEMA IF NOT EXISTS `wellness_real_valladolid_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 
 -- Create user
--- drop user if exists 'admin'@'%';
--- CREATE USER IF NOT EXISTS 'admin'@'%' IDENTIFIED BY 'admin';
--- GRANT ALL PRIVILEGES ON wellness_real_valladolid_db.* TO 'admin'@'%';
+drop user if exists 'admin'@'%';
+CREATE USER IF NOT EXISTS 'admin'@'%' IDENTIFIED BY 'admin';
+GRANT ALL PRIVILEGES ON wellness_real_valladolid_db.* TO 'admin'@'%';
 
 -- Create Tables
 USE `wellness_real_valladolid_db` ;
