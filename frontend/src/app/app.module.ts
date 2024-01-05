@@ -17,6 +17,7 @@ import { JWT_OPTIONS, JwtHelperService  } from '@auth0/angular-jwt';
 import { PlayerListComponent } from './player-list/player-list.component';
 import { ChartComponent } from './raport/chart/chart.component';
 import { ListComponent } from './raport/list/list.component';
+import { NgChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { ListComponent } from './raport/list/list.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgChartsModule,
   ],
   providers: [
     {
