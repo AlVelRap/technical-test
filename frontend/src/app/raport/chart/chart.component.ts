@@ -8,6 +8,8 @@ import {
   ChartOptions,
   ChartType,
 } from 'chart.js/auto';
+import { PlayerService } from '../../services/player.service';
+import { Player } from '../../models/player.model';
 
 @Component({
   selector: 'app-chart',
@@ -21,13 +23,25 @@ export class ChartComponent {
   public chart: any;
   chartData: number[] = [];
   chartLabels: string[] = [];
+  playerData!: Player;
 
   constructor(
     private fatigueService: FatigueService,
+    private playerService: PlayerService,
     private route: ActivatedRoute
   ) {
     this.route.params.subscribe((parameter) => {
-      this.id_player = parameter['id_player'];
+      this.playerService.getOne(parameter['id_player']).subscribe({
+        next: (data) => {
+          this.playerData = data;
+        },
+        error: (errorData) => {
+          this.chartError = 'El jugador no es correcto.';
+        },
+        complete: () => {
+          console.log('Jugador encontrado');
+        },
+      });
       this.fatigueService.findByPlayer(parameter['id_player']).subscribe({
         next: (data) => {
           this.chartError = '';
@@ -35,7 +49,8 @@ export class ChartComponent {
           console.log(data);
         },
         error: (errorData) => {
-          this.chartError = 'Jugador sin datos de fatiga registrados en la última semana.';
+          this.chartError =
+            'Jugador sin datos de fatiga registrados en la última semana.';
           this.chart.data.labels = [];
           this.chart.data.datasets[0].data = [];
           this.chart.update();
@@ -81,12 +96,12 @@ export class ChartComponent {
             label: 'Fatiga',
             data: this.chartData,
             backgroundColor: '#F652A0',
-            pointRadius: 5
+            pointRadius: 5,
           },
         ],
       },
       options: {
-        responsive:true
+        responsive: true,
       },
     });
   }
