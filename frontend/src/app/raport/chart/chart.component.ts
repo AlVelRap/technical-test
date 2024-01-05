@@ -1,51 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Fatigue } from '../../models/fatigue.model';
 import { FatigueService } from '../../services/fatigue.service';
-import {
-  ActivatedRoute,
-  Event,
-  NavigationStart,
-  Router,
-} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-chart',
   templateUrl: './chart.component.html',
   styleUrl: './chart.component.scss',
 })
-export class ChartComponent implements OnInit {
+export class ChartComponent {
   fatigueData!: Fatigue[];
   id_player!: string;
   chartError: string = '';
 
   constructor(
     private fatigueService: FatigueService,
-    private route: ActivatedRoute,
-    private router: Router
+    private route: ActivatedRoute
   ) {
     this.route.params.subscribe((parameter) => {
       this.id_player = parameter['id_player'];
-      this.fatigueService.findByPlayer(this.id_player).subscribe({
+      this.fatigueService.findByPlayer(parameter['id_player']).subscribe({
         next: (data) => {
-          console.log(data);
+          this.chartError = '';
           this.fatigueData = data;
         },
         error: (errorData) => {
-          this.chartError = "Jugador sin datos de fatiga registrados.";
+          this.chartError = 'Jugador sin datos de fatiga registrados.';
+        },
+        complete: () => {
+          console.log('Datos de la Fatiga del jugador encontrados');
         },
       });
     });
   }
-
-  ngOnInit(): void {
-    this.fatigueService.findByPlayer(this.id_player).subscribe({
-      next: (data) => {
-        console.log(data);
-        this.fatigueData = data;
-      },
-    });
-  }
-  // get id_player() {
-  //   return this.route.snapshot.paramMap.get('id_player') || '';
-  // }
 }

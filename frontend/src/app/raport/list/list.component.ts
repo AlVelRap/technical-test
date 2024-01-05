@@ -16,7 +16,6 @@ export class ListComponent {
     this.playerService.getAll().subscribe({
       next: (response) => {
         this.playerList = response;
-        console.log(response);
       },
       error: (errorData) => {
         console.error(errorData);
