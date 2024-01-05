@@ -10,52 +10,5 @@
     <p>
       This API can be use as base for a larger API that use NodeJS and MySQL.
     </p>
-    <div>
-      <canvas id="myChart"></canvas>
-    </div>
   </body>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script>
-    const ctx = document.getElementById("myChart");
-
-    let dates;
-    let feelings;
-
-    axios
-      .get("http://localhost:3000/api/rest/1/fatigue/player/9")
-      .then(function (response) {
-        dates = response.data.map((fatigue) => {
-          return fatigue.registry_date;
-        });
-        feelings = response.data.map((fatigue) => {
-          return fatigue.feeling;
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
-      .finally(function () {
-        new Chart(ctx, {
-          type: "bar",
-          data: {
-            labels: dates,
-            datasets: [
-              {
-                label: "Fatiga",
-                data: feelings,
-                borderWidth: 1,
-              },
-            ],
-          },
-          options: {
-            scales: {
-              y: {
-                beginAtZero: true,
-              },
-            },
-          },
-        });
-      });
-  </script>
 </html>
